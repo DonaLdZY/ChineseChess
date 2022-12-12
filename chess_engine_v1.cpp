@@ -1,5 +1,8 @@
 //Coded by DonaLdZY
-#include<bits/stdc++.h>
+#include<iostream>
+#include<string>
+#include<stdio.h>
+#include<string.h>
 using namespace std;
 const int MaxDepth=5;
 const int INF=32767;
