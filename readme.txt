@@ -1,3 +1,32 @@
+ChineseChess Coded By DonaLdZY
+简介：
+是个配有GUI的中国象棋人机对战的项目
+python web GUI由 刘聪老师 提供
+象棋AI基于min-max搜索算法，v1引入αβ剪枝，v2引入记忆化搜索
+
+依赖环境：
+Python3
+exe可能依赖某些动态连接库，要适配当前电脑可能需要重新编译
+
+启动方法：
+- 在终端中cd到项目目录 例如项目在/Documents/Code/chess，则cd /Documents/Code/chess
+- 输入 python -m serv move.exe
+- 打开浏览器在地址栏输入 http://localhost
+
+一些注释：
+迭代层数设为5层可以在2秒内算出结果
+若迭代层数设为6层则需要10~20秒才算出结果
+要修改迭代层数，打开chess_engine_vX.cpp,修改MaxDepth常量即可
+
+have fun ! :)
+
+
+
+
+
+
+
+--------------------一下是原本python GUI与参考代码的REDAME----------------
 在这个项目里面，你将用c++写一个象棋对弈程序。它配合其余的python界面程序一起运行。
 如果你写的程序编译后叫做 move.exe, 那么你需要
 - 运行 python3 -m serv move.exe

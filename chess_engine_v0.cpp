@@ -125,7 +125,7 @@ inline void updates(int score,int &ans,int (&bm)[4],int x,int y,int xi,int yi){
     }
 }
 //目前的棋盘 最佳走法 迭代剩余层数 αβ剪枝
-int solve(board a,int (&bm)[4],int c=MaxDepth,int worst=3*INF){ 
+int solve(board a,int (&bm)[4],int c=MaxDepth){ 
     //胜利//败北//搜索到底
     if (a.win()) return INF;
     if (a.lose()) return -INF;
@@ -140,8 +140,7 @@ int solve(board a,int (&bm)[4],int c=MaxDepth,int worst=3*INF){
                 for (int i=0;i<=3;i++){
                     int xi=x+f1[i][0],yi=y+f1[i][1];
                     if (inrange(xi,3,5)&&inrange(yi,0,2)&&a.can_move(xi,yi)){
-                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1,-ans),ans,bm,x,y,xi,yi);
-                        if (ans>=worst) return ans; 
+                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1),ans,bm,x,y,xi,yi);
                     }
                 }
                 //飞将
@@ -151,8 +150,8 @@ int solve(board a,int (&bm)[4],int c=MaxDepth,int worst=3*INF){
                         yi++;
                     }
                     if (inrange(xi,0,8)&&inrange(yi,0,9)&&a.g[xi][yi]==3){
-                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1,-ans),ans,bm,x,y,xi,yi);
-                        if (ans>=worst) return ans;
+                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1),ans,bm,x,y,xi,yi);
+                        
                     }
                 }
                 break;
@@ -160,8 +159,8 @@ int solve(board a,int (&bm)[4],int c=MaxDepth,int worst=3*INF){
                 for (int i=0;i<=3;i++){
                     int xi=x+f2[i][0],yi=y+f2[i][1];
                     if (inrange(xi,3,5)&&inrange(yi,0,2)&&a.can_move(xi,yi)){
-                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1,-ans),ans,bm,x,y,xi,yi);
-                        if (ans>=worst) return ans;
+                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1),ans,bm,x,y,xi,yi);
+                        
                     }
                 }
                 break;
@@ -169,8 +168,8 @@ int solve(board a,int (&bm)[4],int c=MaxDepth,int worst=3*INF){
                 for (int i=0;i<=3;i++){
                     int xi=x+2*f2[i][0],yi=y+2*f2[i][1];
                     if (inrange(xi,0,8)&&inrange(yi,0,4)&&a.can_move(xi,yi)&&a.g[x+f2[i][0]][y+f2[i][1]]==0){
-                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1,-ans),ans,bm,x,y,xi,yi);
-                        if (ans>=worst) return ans;
+                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1),ans,bm,x,y,xi,yi);
+                        
                     }
                 }
                 break;
@@ -179,8 +178,8 @@ int solve(board a,int (&bm)[4],int c=MaxDepth,int worst=3*INF){
                 if (a.g[x+f1[i/2][0]][y+f1[i/2][1]]==0){
                     int xi=x+f3[i][0],yi=y+f3[i][1];
                     if (inrange(xi,0,8)&&inrange(yi,0,9)&&a.can_move(xi,yi)){
-                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1,-ans),ans,bm,x,y,xi,yi);
-                        if (ans>=worst) return ans;
+                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1),ans,bm,x,y,xi,yi);
+                        
                     }
                 }
                 break;
@@ -190,14 +189,14 @@ int solve(board a,int (&bm)[4],int c=MaxDepth,int worst=3*INF){
                     while (inrange(xi+f1[i][0],0,8)&&inrange(yi+f1[i][1],0,9)&&a.g[xi+f1[i][0]][yi+f1[i][1]]==0){
                         xi+=f1[i][0];
                         yi+=f1[i][1];
-                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1,-ans),ans,bm,x,y,xi,yi);
-                        if (ans>=worst) return ans;
+                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1),ans,bm,x,y,xi,yi);
+                        
                     }
                     if (inrange(xi+f1[i][0],0,8)&&inrange(yi+f1[i][1],0,9)&&a.g[xi+f1[i][0]][yi+f1[i][1]]%2==1){
                         xi+=f1[i][0];
                         yi+=f1[i][1];
-                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1,-ans),ans,bm,x,y,xi,yi);
-                        if (ans>=worst) return ans;
+                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1),ans,bm,x,y,xi,yi);
+                        
                     }
                 }
                 break;
@@ -207,8 +206,8 @@ int solve(board a,int (&bm)[4],int c=MaxDepth,int worst=3*INF){
                     while (inrange(xi+f1[i][0],0,8)&&inrange(yi+f1[i][1],0,9)&&a.g[xi+f1[i][0]][yi+f1[i][1]]==0){
                         xi+=f1[i][0];
                         yi+=f1[i][1];
-                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1,-ans),ans,bm,x,y,xi,yi);
-                        if (ans>=worst) return ans;
+                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1),ans,bm,x,y,xi,yi);
+                        
                     }
                     //炮击
                     xi+=f1[i][0],yi+=f1[i][1];
@@ -220,8 +219,8 @@ int solve(board a,int (&bm)[4],int c=MaxDepth,int worst=3*INF){
                         if (inrange(xi+f1[i][0],0,8)&&inrange(yi+f1[i][1],0,9)&&a.g[xi+f1[i][0]][yi+f1[i][1]]%2==1){
                             xi+=f1[i][0];
                             yi+=f1[i][1];
-                            updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1,-ans),ans,bm,x,y,xi,yi);
-                            if (ans>=worst) return ans;
+                            updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1),ans,bm,x,y,xi,yi);
+                            
                         }
                     }  
                 }
@@ -230,8 +229,8 @@ int solve(board a,int (&bm)[4],int c=MaxDepth,int worst=3*INF){
                 for (int i=(y<=4)?3:1;i<=3;i++){
                     int xi=x+f1[i][0],yi=y+f1[i][1];
                     if (inrange(xi,0,8)&&inrange(yi,0,9)&&a.can_move(xi,yi)){
-                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1,-ans),ans,bm,x,y,xi,yi);
-                        if (ans>=worst) return ans;
+                        updates(-solve((a.move(x,y,xi,yi)).rotate(),outsiders,c-1),ans,bm,x,y,xi,yi);
+                        
                     }
                 }
                 break;
