@@ -43,9 +43,10 @@ inline void updates(int score,int &ans,int (&bm)[4],int x,int y,int xi,int yi){
     }
 }
 class board{
-  public:
+  private:
     //棋盘本体
     int g[9][10];
+  public:
     //构造函数
     board(){memset(g,0,sizeof(g));}
     //输出棋盘，用于调试
