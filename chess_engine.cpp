@@ -11,8 +11,8 @@ const int INF=32767;
 const int score[16]={0,0,1000,-1000,3,-3,3,-3,9,-9,20,-20,14,-14,2,-2};
 //额外评分
 //[棋子编号,x左范围,x右范围,y下范围,y上范围,额外分]
-const int exscoresize=6;
-const int exscore[exscoresize][6]={
+const int exscoresize=3;
+const int exscore[2*exscoresize][6]={
     {14,0,8,5,9,1}, //过河兵
     {15,0,8,0,4,-1}, 
     {14,4,4,3,3,3}, //中兵
@@ -125,7 +125,7 @@ inline void updates(int score,int &ans,int (&bm)[4],int x,int y,int xi,int yi){
     }
 }
 //目前的棋盘 最佳走法 迭代剩余层数 αβ剪枝
-int dfs(board a,int (&bm)[4],int c=MaxDepth,int worst=-INF){ 
+int dfs(board a,int (&bm)[4],int c=MaxDepth,int worst=3*INF){ 
     //胜利//败北//搜索到底
     if (a.win()) return INF;
     if (a.lose()) return -INF;
@@ -168,7 +168,7 @@ int dfs(board a,int (&bm)[4],int c=MaxDepth,int worst=-INF){
             case 6: //象
                 for (int i=0;i<=3;i++){
                     int xi=x+2*f2[i][0],yi=y+2*f2[i][1];
-                    if (inrange(xi,0,8)&&inrange(yi,0,4)&&a.can_move(xi,yi)){
+                    if (inrange(xi,0,8)&&inrange(yi,0,4)&&a.can_move(xi,yi)&&a.g[x+f2[i][0]][y+f2[i][1]]==0){
                         updates(-dfs((a.move(x,y,xi,yi)).rotate(),outsiders,c-1,-ans),ans,bm,x,y,xi,yi);
                         if (ans>=worst) return ans;
                     }
