@@ -1,0 +1,85 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C/C++ 编译&运行",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "cmd",
+            "preLaunchTask": "C/C++ Compile",
+            "args": [
+                "/C",
+                "${workspaceFolder}\\${fileBasenameNoExtension}.exe",
+                "&",
+                "echo.",
+                "&",
+                "pause"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console":"newExternalWindow"
+            
+        },
+        {
+            "name": "C/C++ 编译&调试",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\mingw-w64\\bin\\gdb.exe",
+            "preLaunchTask": "C/C++ Compile",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "C/C++ 运行",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "cmd",
+            "args": [
+                "/C",
+                "${workspaceFolder}\\${fileBasenameNoExtension}.exe",
+                "&",
+                "echo.",
+                "&",
+                "pause"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console":"newExternalWindow"
+            
+        },
+        {
+            "name": "C/C++ 调试",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\mingw-w64\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}
