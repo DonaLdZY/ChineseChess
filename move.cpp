@@ -1,6 +1,6 @@
 #include<fstream>
 //#include"chess_engine_v0.cpp"
-#include"chess_engine_v1.cpp"
+#include"chess_engine_v2.cpp"
 ifstream fin("board.txt");
 ofstream fout("move.txt");
 int main(){
