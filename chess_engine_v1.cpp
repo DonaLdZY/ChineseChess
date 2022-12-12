@@ -9,14 +9,14 @@ const int INF=32767;
 
 //红方 王2 士4 相6 马8 车10 炮12 兵14
 //黑方 将3 仕5 象7 马9 车11 炮13 卒15
-//type=t/2  player=t&1
+//type=t/2  player=t^1
 
 //棋子评分权重
 const int score[16]={0,0,1000,-1000,3,-3,3,-3,9,-9,20,-20,14,-14,2,-2};
 //额外评分
 //[棋子编号,x左范围,x右范围,y下范围,y上范围,额外分]
-const int exscoresize=3;
-const int exscore[2*exscoresize][6]={
+const int exscoresize=6;
+const int exscore[exscoresize][6]={
     {14,0,8,5,9,1}, //过河兵
     {15,0,8,0,4,-1}, 
     {14,4,4,3,3,3}, //中兵

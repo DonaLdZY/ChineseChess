@@ -1,4 +1,3 @@
-//Coded by DonaLdZY
 #include<bits/stdc++.h>
 using namespace std;
 const int MaxDepth=5;
@@ -12,8 +11,8 @@ const int INF=32767;
 const int score[16]={0,0,1000,-1000,3,-3,3,-3,9,-9,20,-20,14,-14,2,-2};
 //额外评分
 //[棋子编号,x左范围,x右范围,y下范围,y上范围,额外分]
-const int exscoresize=3;
-const int exscore[2*exscoresize][6]={
+const int exscoresize=6;
+const int exscore[exscoresize][6]={
     {14,0,8,5,9,1}, //过河兵
     {15,0,8,0,4,-1}, 
     {14,4,4,3,3,3}, //中兵
@@ -29,16 +28,7 @@ const int f3[8][2]={{1,-2},{-1,-2},{-2,1},{-2,-1},{2,1},{2,-1},{-1,2},{1,2}};//�
 inline bool inrange(int x,int z,int y){
     return z<=x&&x<=y;
 }
-//尝试更新最优走法
-inline void updates(int score,int &ans,int (&bm)[4],int x,int y,int xi,int yi){
-    if (score>ans){
-        ans=score;
-        bm[0]=x;
-        bm[1]=y;
-        bm[2]=xi;
-        bm[3]=yi;
-    }
-}
+
 class board{
   public:
     int g[9][10];
@@ -124,7 +114,16 @@ class board{
         return x;
     }
 };
-
+//更新最优走法
+inline void updates(int score,int &ans,int (&bm)[4],int x,int y,int xi,int yi){
+    if (score>ans){
+        ans=score;
+        bm[0]=x;
+        bm[1]=y;
+        bm[2]=xi;
+        bm[3]=yi;
+    }
+}
 //目前的棋盘 最佳走法 迭代剩余层数 αβ剪枝
 int solve(board a,int (&bm)[4],int c=MaxDepth,int worst=3*INF){ 
     //胜利//败北//搜索到底

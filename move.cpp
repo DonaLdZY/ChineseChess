@@ -1,4 +1,5 @@
 #include<fstream>
+//#include"chess_engine_v0.cpp"
 #include"chess_engine_v1.cpp"
 ifstream fin("board.txt");
 ofstream fout("move.txt");
@@ -11,7 +12,8 @@ int main(){
     }
     //ex.print();
     int move[4];
-    ex.solve(move);
+    //solve(ex,move); //v0
+    ex.solve(move); //v1
     fout<<move[0]<<' '<<move[1]<<' '<<move[2]<<' '<<move[3]<<endl;
     return 0;
 }
