@@ -125,7 +125,7 @@ inline void updates(int score,int &ans,int (&bm)[4],int x,int y,int xi,int yi){
     }
 }
 //目前的棋盘 最佳走法 迭代剩余层数 αβ剪枝
-int dfs(board a,int (&bm)[4],int c,int worst){ 
+int dfs(board a,int (&bm)[4],int c=MaxDepth,int worst=-INF){ 
     //胜利//败北//搜索到底
     if (a.win()) return INF;
     if (a.lose()) return -INF;
