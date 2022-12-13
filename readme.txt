@@ -16,7 +16,7 @@ exe可能依赖某些动态连接库，要适配当前电脑可能需要重新�
 一些注释：
 迭代层数设为5层可以在2秒内算出结果
 若迭代层数设为6层则需要10~20秒才算出结果
-要修改迭代层数，打开chess_engine_vX.cpp,修改MaxDepth常量即可
+要修改迭代层数，打开chess_engine_v2.cpp,修改MaxDepth常量，然后重新编译move.cpp即可
 
 have fun ! :)
 
